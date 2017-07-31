@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Training.Serialization.Models;
 
 namespace Training.Serialization.Tests
@@ -25,8 +27,12 @@ namespace Training.Serialization.Tests
             };
 
             // Act
+            Debug.WriteLine($"{Environment.NewLine}Serialization - Start...");
             var serialized = DataContractSerializerUtility.Serialize(OriginalAddress);
+            Debug.WriteLine("Serialization - Finish...");
+            Debug.WriteLine($"{Environment.NewLine}Deserialization - Start...");
             DeserializedAddress = DataContractSerializerUtility.Deserialize<PrimaryAddress>(serialized);
+            Debug.WriteLine("Deserialization - Finish...");
         }
 
         [TestMethod]
